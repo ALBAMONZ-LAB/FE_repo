@@ -21,6 +21,8 @@
 
 - `src/app/page.tsx`: 메인 페이지 컴포넌트
 - `src/app/api/home/route.ts`: UI 구성을 제공하는 API 라우트
+- `src/app/event/page.tsx`: 이벤트 페이지 컴포넌트
+- `src/app/api/event/route.ts`: 이벤트 페이지 UI 구성을 제공하는 API 라우트
 
 ## 사용 방법
 
@@ -30,5 +32,9 @@
 - Text
 - Button
 - Table
+- Image
 
-서버 측 UI 구성을 수정하려면 `src/app/api/home/route.ts` 파일을 참조.
+## 페이지
+
+1. 홈 페이지 (`/`): 기본 서버 드리븐 UI 예시
+2. 이벤트 페이지 (`/event`): 이벤트 페이지 예시
