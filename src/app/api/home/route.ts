@@ -22,6 +22,13 @@ export async function GET() {
           },
         },
         {
+          type: "Button",
+          props: {
+            label: "이벤트 화면으로 이동",
+            onClick: 'window.location.href = "/event";',
+          },
+        },
+        {
           type: "Table",
           props: {
             columns: ["이름", "나이", "직업"],

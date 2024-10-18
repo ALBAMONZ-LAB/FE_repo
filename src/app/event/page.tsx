@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 type ComponentType = {
   type: string;
@@ -43,6 +45,12 @@ export default function EventPage() {
           >
             {props.label}
           </button>
+        );
+      case "LinkButton":
+        return (
+          <Link href={`/photo`}>
+            <Button variant="outline">{props.label}</Button>
+          </Link>
         );
       default:
         return null;

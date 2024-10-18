@@ -22,6 +22,19 @@ export async function GET() {
             onClick: "alert('이벤트 버튼 클릭됨')",
           },
         },
+        {
+          type: "EventButton",
+          props: {
+            label: "홈 화면 이동",
+            onClick: "window.location.href = '/';",
+          },
+        },
+        {
+          type: "LinkButton",
+          props: {
+            label: "모달 열기",
+          },
+        },
       ],
       timestamp: new Date().toISOString(),
     };
