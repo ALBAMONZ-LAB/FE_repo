@@ -3,16 +3,9 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ComponentType, UIConfig } from "@/lib/type";
 
-type ComponentType = {
-  type: string;
-  props: Record<string, any>;
-};
 
-type UIConfig = {
-  backgroundImage: string;
-  components: ComponentType[];
-};
 
 export default function EventPage() {
   const [uiConfig, setUiConfig] = useState<UIConfig | null>(null);
