@@ -33,7 +33,7 @@ export async function GET() {
           type: "EventButtonWithFunction",
           props: {
             label: "이벤트 버튼",
-            onClick: "alert('함수클릭됨')",
+            onClick: null,
           },
         },
         {
