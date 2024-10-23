@@ -38,3 +38,86 @@
 
 1. 홈 페이지 (`/`): 기본 서버 드리븐 UI 예시
 2. 이벤트 페이지 (`/event`): 이벤트 페이지 예시
+
+
+```mermaid
+graph TD
+    A[App] --> B[pages]
+    A --> C[components]
+    A --> D[api]
+    A --> E[lib]
+
+    B --> F[Home]
+    B --> G[Event]
+    B --> H[Photo]
+    B --> I[Login]
+
+    C --> J[UI Components]
+    J --> K[Button]
+    J --> L[Dialog]
+
+    D --> M[home]
+    D --> N[event]
+
+    E --> O[utils]
+
+    H --> P[PhotoModal]
+    H --> Q[PhotoPage]
+
+    subgraph "Server-Driven UI"
+        M --> F
+        N --> G
+    end
+
+    subgraph "Dynamic Routing"
+        H --> P
+        H --> Q
+    end
+
+    subgraph "Shared Components"
+        C --> J
+    end
+
+    subgraph "Utility Functions"
+        E --> O
+    end
+```
+
+
+## Server-driven UI
+
+```mermaid
+sequenceDiagram
+    actor Client
+    participant Page as Next.js Page Component
+    participant Server as Next.js Server
+    participant API as API Route
+    participant DynamicComponent as Dynamic Component
+
+    Client->>Page: 페이지 요청
+    activate Page
+    Page->>Server: getServerSideProps 실행
+    activate Server
+    Server->>API: UI 구성 요청
+    activate API
+    Note right of API: UI 구성 생성
+    API-->>Server: UI 구성 반환
+    deactivate API
+    Server-->>Page: props로 UI 구성 전달
+    deactivate Server
+    Page->>DynamicComponent: UI 구성 전달
+    activate DynamicComponent
+    DynamicComponent->>DynamicComponent: 컴포넌트 동적 렌더링
+    DynamicComponent-->>Page: 렌더링된 컴포넌트
+    deactivate DynamicComponent
+    Page-->>Client: 렌더링된 페이지 반환
+    deactivate Page
+
+    Note over Client,DynamicComponent: 클라이언트 측 상호작용
+    Client->>DynamicComponent: 사용자 상호작용
+    activate DynamicComponent
+    DynamicComponent->>DynamicComponent: 정의된 동작 실행
+    DynamicComponent-->>Client: UI 업데이트
+    deactivate DynamicComponent
+
+```
