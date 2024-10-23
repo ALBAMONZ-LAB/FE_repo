@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { handleAction } from "@/lib/handleAction";
+import { handleAction } from "@/lib/actionHandler";
 import {
   UIConfig,
   ComponentType,
@@ -11,12 +11,18 @@ import {
   TextProps,
   EventButtonProps,
   LinkButtonProps,
+  UserProps,
 } from "@/types/eventTypes";
+import { GET_USER } from "@/graphql/queries";
+import { gql, useApolloClient, useQuery } from "@apollo/client";
 
 // 이벤트 페이지
-
 export default function EventPage() {
   const [uiConfig, setUiConfig] = useState<UIConfig | null>(null);
+  const client = useApolloClient();
+  const { data, loading } = useQuery(GET_USER, {
+    variables: { id: "1" },
+  });
 
   useEffect(() => {
     fetch("/api/event")
@@ -28,6 +34,21 @@ export default function EventPage() {
       .catch((error) =>
         console.error("이벤트 UI 설정을 가져오는 중 오류 발생:", error)
       );
+
+    client
+      .query({
+        query: gql`
+          query GetUser {
+            user(id: "1") {
+              id
+              name
+              email
+            }
+          }
+        `,
+      })
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
   }, []);
 
   const DynamicComponent = ({ type, props }: ComponentType) => {
@@ -57,12 +78,18 @@ export default function EventPage() {
             </Button>
           </Link>
         );
+      case "User":
+        return (
+          <div>
+            {(props as UserProps).label} {data?.user.name}
+          </div>
+        );
       default:
         return null;
     }
   };
 
-  if (!uiConfig) {
+  if (!uiConfig || loading) {
     return <div className="text-white">로딩 중...</div>;
   }
 

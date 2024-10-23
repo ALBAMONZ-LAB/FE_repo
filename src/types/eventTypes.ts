@@ -1,4 +1,4 @@
-import { Action } from "@/lib/handleAction";
+import { Action } from "@/lib/actionHandler";
 
 export interface HeaderProps {
   title: string;
@@ -16,6 +16,10 @@ export interface EventButtonProps {
 export interface LinkButtonProps {
   label: string;
   href: string;
+}
+
+export interface UserProps {
+  label: string;
 }
 
 export type ComponentProps =

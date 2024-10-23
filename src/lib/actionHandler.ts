@@ -1,4 +1,4 @@
-export type ActionType = "ALERT" | "NAVIGATE" | "OPEN_MODAL";
+export type ActionType = "ALERT" | "NAVIGATE" | "OPEN_MODAL" | "GET_USER";
 
 export type Action = {
   type: ActionType;
@@ -18,7 +18,8 @@ export const handleAction = (action: Action) => {
     case "OPEN_MODAL":
       // 모달 열기 로직 구현
       console.log("모달 열기:", action.payload);
-
+      break;
+    case "GET_USER":
       break;
     default:
       console.warn("알 수 없는 액션 타입:", action.type);

@@ -45,6 +45,12 @@ export async function GET() {
             },
           },
         },
+        {
+          type: "User",
+          props: {
+            label: "유저 데이터",
+          },
+        },
       ],
       timestamp: new Date().toISOString(),
     };
