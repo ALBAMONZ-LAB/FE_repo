@@ -3,16 +3,17 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { handleAction } from "@/lib/handleAction";
+import {
+  UIConfig,
+  ComponentType,
+  HeaderProps,
+  TextProps,
+  EventButtonProps,
+  LinkButtonProps,
+} from "@/types/eventTypes";
 
-type ComponentType = {
-  type: string;
-  props: Record<string, any>;
-};
-
-type UIConfig = {
-  backgroundImage: string;
-  components: ComponentType[];
-};
+// 이벤트 페이지
 
 export default function EventPage() {
   const [uiConfig, setUiConfig] = useState<UIConfig | null>(null);
@@ -33,23 +34,27 @@ export default function EventPage() {
     switch (type) {
       case "Header":
         return (
-          <h1 className="text-3xl font-bold text-white mb-6">{props.title}</h1>
+          <h1 className="text-3xl font-bold text-white mb-6">
+            {(props as HeaderProps).title}
+          </h1>
         );
       case "Text":
-        return <p className="mb-4">{props.content}</p>;
+        return <p className="mb-4">{(props as TextProps).content}</p>;
       case "EventButton":
         return (
           <button
             className="bg-yellow-400 hover:bg-yellow-500 text-center text-black font-bold py-3 px-6 rounded-full text-xl shadow-lg transform transition duration-300 hover:scale-105"
-            onClick={() => eval(props.onClick)}
+            onClick={() => handleAction((props as EventButtonProps).action)}
           >
-            {props.label}
+            {(props as EventButtonProps).label}
           </button>
         );
       case "LinkButton":
         return (
-          <Link href={`/photo`}>
-            <Button variant="outline">{props.label}</Button>
+          <Link href={(props as LinkButtonProps).href || "#"}>
+            <Button variant="outline">
+              {(props as LinkButtonProps).label}
+            </Button>
           </Link>
         );
       default:
