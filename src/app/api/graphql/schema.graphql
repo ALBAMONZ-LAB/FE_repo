@@ -1,0 +1,28 @@
+type Query {
+  hello: String
+  user(id: ID!): User
+  eventPage(id: ID!): EventPage
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type EventPage {
+  id: ID!
+  title: String!
+  description: String!
+  photo: String!
+}
+
+type Mutation {
+  patchEventPage(input: EventPageInput!): EventPage
+}
+
+input EventPageInput {
+  title: String!
+  description: String!
+  photo: String!
+}

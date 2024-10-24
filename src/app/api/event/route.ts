@@ -19,14 +19,20 @@ export async function GET() {
           type: "EventButton",
           props: {
             label: "이벤트 참여하기",
-            onClick: "alert('이벤트 버튼 클릭됨')",
+            action: {
+              type: "ALERT",
+              payload: "이벤트 버튼 클릭됨",
+            },
           },
         },
         {
           type: "EventButton",
           props: {
             label: "홈 화면 이동",
-            onClick: "window.location.href = '/';",
+            action: {
+              type: "NAVIGATE",
+              payload: "/",
+            },
           },
         },
         {
@@ -40,6 +46,16 @@ export async function GET() {
           type: "LinkButton",
           props: {
             label: "모달 열기",
+            action: {
+              type: "OPEN_MODAL",
+              payload: "모달 열기",
+            },
+          },
+        },
+        {
+          type: "User",
+          props: {
+            label: "유저 데이터",
           },
         },
       ],
