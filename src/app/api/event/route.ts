@@ -36,6 +36,13 @@ export async function GET() {
           },
         },
         {
+          type: "EventButtonWithFunction",
+          props: {
+            label: "이벤트 버튼",
+            onClick: null,
+          },
+        },
+        {
           type: "LinkButton",
           props: {
             label: "모달 열기",

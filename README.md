@@ -23,6 +23,7 @@
 - `src/app/api/home/route.ts`: UI 구성을 제공하는 API 라우트
 - `src/app/event/page.tsx`: 이벤트 페이지 컴포넌트
 - `src/app/api/event/route.ts`: 이벤트 페이지 UI 구성을 제공하는 API 라우트
+- `src/app/api/graphql/route.ts`: graphql API
 
 ## 사용 방법
 
@@ -38,7 +39,6 @@
 
 1. 홈 페이지 (`/`): 기본 서버 드리븐 UI 예시
 2. 이벤트 페이지 (`/event`): 이벤트 페이지 예시
-
 
 ```mermaid
 graph TD
@@ -83,7 +83,6 @@ graph TD
     end
 ```
 
-
 ## Server-driven UI
 
 ```mermaid
@@ -121,3 +120,9 @@ sequenceDiagram
     deactivate DynamicComponent
 
 ```
+
+3. 커스텀 함수 이벤트 페이지(`/mobile-event`)
+
+## 설계
+
+![IMG_0201835E4C32-1](https://github.com/user-attachments/assets/58c6a78f-2d48-44be-a188-452a990593d3)
