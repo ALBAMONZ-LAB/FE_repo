@@ -2,16 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import { UIConfig, ComponentType } from "@/lib/type";
-import { gql, useApolloClient, useQuery } from "@apollo/client";
-import { GET_USER } from "@/graphql/queries";
+import { gql, useApolloClient } from "@apollo/client";
 import { useEffect } from "react";
 
 export default function MobileEventClient({uiConfig}: {uiConfig: UIConfig | null}) {
   const client = useApolloClient();
-  
+
 useEffect(()=>{
   client.query({
-    query: gql`query GetUser { user(id: "1") { id name email } }`
+    query: gql`query GET_EVENT_PAGE_WITH_FUNCTION { eventPageWithFunction(id: "1") { id title description } }`
   }) 
   .then((result) => console.log(result))
   .catch((error) => console.error(error));

@@ -18,6 +18,13 @@ export const resolvers = {
         photo: "이벤트 페이지 사진",
       };
     },
+    eventPageWithFunction: (_: unknown, { id }: { id: string }) => {
+      return {
+        id,
+        title: "이벤트 페이지 타이틀",
+        description: "이벤트 페이지 설명",
+      };
+    },
   },
   Mutation: {
     patchEventPage: (_: unknown, { input }: { input: EventPageInput }) => {

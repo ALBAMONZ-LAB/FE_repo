@@ -2,6 +2,7 @@ type Query {
   hello: String
   user(id: ID!): User
   eventPage(id: ID!): EventPage
+  eventPageWithFunction(id: ID!): EventPageWithFunction
 }
 
 type User {
@@ -15,6 +16,12 @@ type EventPage {
   title: String!
   description: String!
   photo: String!
+}
+
+type EventPageWithFunction {
+  id: ID!
+  title: String!
+  description: String!
 }
 
 type Mutation {
