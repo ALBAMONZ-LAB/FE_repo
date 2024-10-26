@@ -9,3 +9,13 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const GET_EVENT_PAGE_WITH_FUNCTION = gql`
+  query GetEventPageWithFunction($id: ID!) {
+    eventPageWithFunction(id: $id) {
+      id
+      title
+      description
+    }
+  }
+`;
