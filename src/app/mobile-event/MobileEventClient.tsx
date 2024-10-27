@@ -3,23 +3,40 @@
 import { Button } from "@/components/ui/button";
 import { UIConfig, ComponentType } from "@/lib/type";
 import { gql, useApolloClient } from "@apollo/client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+interface EventPageWithFunctionType {
+  type: string;
+  bannerImage: string;
+  eventMainImage: string;
+  buttonList?: Button[];
+}
+
+interface Button {
+  type: string;
+  label: string;
+  onClick: string;
+}
 
 export default function MobileEventClient({uiConfig}: {uiConfig: UIConfig | null}) {
   const client = useApolloClient();
+  const [uiConfigData, setUiConfigData] = useState<EventPageWithFunctionType | null>(null);
 
 useEffect(()=>{
   client.query({
-    query: gql`query GET_EVENT_PAGE_WITH_FUNCTION { eventPageWithFunction(id: "1") { id title description } }`
+    query: gql`query GET_EVENT_PAGE_WITH_FUNCTION { eventPageWithFunction(type: "new crew") { type bannerImage eventMainImage buttonList { type label } } }`
   }) 
-  .then((result) => console.log(result))
+  .then((result) => {
+    setUiConfigData(result.data.eventPageWithFunction);
+    console.log(result)
+  })
   .catch((error) => console.error(error));
 }, []);
 
   const handleCustomClick = (type: string) => {
     switch (type) {
-      case "EventButtonWithFunction":
-        alert("함수클릭됨");
+      case "mainEventButton":
+        alert("메인 이벤트 버튼입니다");
         break;
       default:
         break;
@@ -27,13 +44,23 @@ useEffect(()=>{
   };
 
     const DynamicButtonComponent = ({ type, props }: ComponentType) => {
-          return <Button onClick={() =>handleCustomClick(props.type)}>{props.label}</Button>
+      switch (type) {
+        case "mainEventButton":
+          return <Button onClick={() =>handleCustomClick(type)}>{props.label}</Button>
+        default:
+          return null;
+      }
     };
   
     return (<div>
+      {/* event main banner */}
       {
-        uiConfig?.components.map((component, index)=>
-        <DynamicButtonComponent key={`${index}-${component.type}`} type={component.type} props={component.props}/>
+        uiConfigData?.bannerImage && <img src={uiConfigData.bannerImage} alt="banner" />
+      }
+      {/* event button  */}
+      {
+        uiConfigData?.buttonList && uiConfigData.buttonList.map((button, index)=>
+        <DynamicButtonComponent key={`${index}-${button.type}`} type={button.type} props={button}/>
         )
       }
     </div>);
