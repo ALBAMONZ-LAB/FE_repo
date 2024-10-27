@@ -18,11 +18,15 @@ export const resolvers = {
         photo: "이벤트 페이지 사진",
       };
     },
-    eventPageWithFunction: (_: unknown, { id }: { id: string }) => {
+    eventPageWithFunction: (_: unknown, { type }: { type: string }) => {
       return {
-        id,
-        title: "이벤트 페이지 타이틀",
-        description: "이벤트 페이지 설명",
+        type,
+        bannerImage: "https://www.shinailbo.co.kr/news/photo/202307/1728759_885803_4829.jpg",
+        eventMainImage: "이벤트 메인 이미지",
+        buttonList: [{
+          type: "mainEventButton",
+          label: "메인이벤트",
+        }]
       };
     },
   },
