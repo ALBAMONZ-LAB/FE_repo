@@ -18,7 +18,7 @@ interface Button {
   onClick: string;
 }
 
-export default function MobileEventClient({uiConfig}: {uiConfig: UIConfig | null}) {
+export default function MobileEventClient() {
   const client = useApolloClient();
   const [uiConfigData, setUiConfigData] = useState<EventPageWithFunctionType | null>(null);
 
