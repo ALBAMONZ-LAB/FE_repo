@@ -25,7 +25,7 @@ export const resolvers = {
         eventMainImage: "이벤트 메인 이미지",
         buttonList: [{
           type: "mainEventButton",
-          label: "메인이벤트",
+          label: "응모하기",
         }]
       };
     },

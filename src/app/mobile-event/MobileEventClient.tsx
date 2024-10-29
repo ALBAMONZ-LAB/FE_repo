@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Input }from "@/components/input";
 import { UIConfig, ComponentType } from "@/lib/type";
 import { gql, useApolloClient } from "@apollo/client";
 import { useEffect, useState } from "react";
@@ -57,6 +58,12 @@ useEffect(()=>{
       {
         uiConfigData?.bannerImage && <img src={uiConfigData.bannerImage} alt="banner" />
       }
+      {/* event form */}
+      <p>이름</p>
+      <Input />
+      <p>전화번호</p>
+      <Input />
+      <br />
       {/* event button  */}
       {
         uiConfigData?.buttonList && uiConfigData.buttonList.map((button, index)=>
